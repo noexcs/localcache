@@ -1,6 +1,6 @@
-use localcache::{Cache, TtlCache};
 use std::time::Duration;
-
+use localcache::lib::ttlcache::TtlCache;
+use localcache::lib::cache::Cache;
 #[test]
 fn test_ttl_cache_insert_and_get() {
     let ttl = Duration::from_millis(200);

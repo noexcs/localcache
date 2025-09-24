@@ -1,6 +1,6 @@
-use localcache::{Cache, LruCache};
 use std::time::Duration;
-
+use localcache::lib::lrucache::LruCache;
+use localcache::lib::cache::Cache;
 #[test]
 fn test_lru_cache_insert_and_get() {
     let mut cache: LruCache<String, String> = LruCache::new(100);
