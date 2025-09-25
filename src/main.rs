@@ -13,14 +13,6 @@ fn main() {
         println!("获取到值: {}", value);
     }
 
-    // 创建带默认过期时间的缓存
-    let mut cache_with_ttl = new_cache::<String, i32>(
-        CacheType::WithDefaultTtl(Duration::from_secs(10))
-    );
-
-    cache_with_ttl.insert("counter".to_string(), 42);
-    println!("Counter value: {:?}", cache_with_ttl.get(&"counter".to_string()));
-
     // 创建LRU缓存
     let mut lru_cache = new_cache::<String, i32>(CacheType::Lru(100));
     lru_cache.insert("lru_key".to_string(), 100);

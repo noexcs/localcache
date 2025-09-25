@@ -14,20 +14,6 @@ fn test_new_cache_basic() {
 }
 
 #[test]
-fn test_new_cache_with_default_ttl() {
-    let mut cache = new_cache::<String, i32>(CacheType::WithDefaultTtl(Duration::from_millis(100)));
-
-    cache.insert("counter".to_string(), 42);
-    assert_eq!(cache.get(&"counter".to_string()), Some(42));
-
-    // 等待过期
-    std::thread::sleep(Duration::from_millis(150));
-
-    // 应该获取不到值（已过期）
-    assert_eq!(cache.get(&"counter".to_string()), None);
-}
-
-#[test]
 fn test_new_cache_lru() {
     let mut cache = new_cache::<String, i32>(CacheType::Lru(100));
 

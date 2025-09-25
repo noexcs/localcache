@@ -1,6 +1,5 @@
 use crate::lib::basiccache::BasicCache;
 use crate::lib::lrucache::LruCache;
-use crate::lib::ttlcache::TtlCache;
 use std::hash::Hash;
 use std::time::{Duration, SystemTime};
 
@@ -11,8 +10,6 @@ pub enum CacheType {
     Basic,
     /// LRU (Least Recently Used) 实现
     Lru(usize), // usize 表示最大容量
-    /// 带默认过期时间的实现
-    WithDefaultTtl(Duration),
 }
 
 /// 缓存 trait，定义缓存的基本操作
@@ -38,7 +35,6 @@ where
     match cache_type {
         CacheType::Basic => Box::new(BasicCache::new()),
         CacheType::Lru(max_size) => Box::new(LruCache::new(max_size)),
-        CacheType::WithDefaultTtl(duration) => Box::new(TtlCache::new(duration)),
     }
 }
 
